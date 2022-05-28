@@ -2,13 +2,6 @@
 #include<cstring>
 
 #define MAX 5001
-/*5 6
-1 2 -1
-2 3 -1
-3 1 -1
-3 4 1
-4 5 1
-5 3 1*/
 using namespace std;
 struct edge {
     int node;
@@ -20,13 +13,6 @@ struct node {
 int stk[MAX], instk[MAX], edges[MAX][MAX], top;
 bool nm[MAX];
 
-/*6 6
-1 2 1
-2 3 1
-3 1 1
-4 5 -1
-5 6 -1
-6 4 1*/
 bool dfs(int u) {
     stk[++top] = u;
     instk[u] = nm[u] = true;
@@ -40,13 +26,8 @@ bool dfs(int u) {
             while (stk[temp] != i->node) {
                 instk[stk[temp]] = 0;
                 sum += edges[stk[--temp]][stk[temp + 1]];
-                //cout<<stk[top]<<' '<<stk[top+1]<<' ';
-                //cout<<sum<<' '<<endl;
             }
             sum += edges[u][stk[temp]];
-            //cout<<u<<' '<<i->node<<' ';
-            //cout<<sum<<' '<<endl;
-            //cout<<top<<endl;
             if (sum < 0) {
                 return false;
             }
